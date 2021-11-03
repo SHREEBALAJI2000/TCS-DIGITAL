@@ -1,0 +1,68 @@
+/*
+run this file @ : https://code.sololearn.com/cA13A11a0A23
+
+
+
+2.Maximum size square sub-matrix with all 1s
+Given a binary matrix, find out the maximum size square sub-matrix with all 1s.
+
+
+*/
+
+#include <stdio.h>
+
+
+int min_value(int arr[10][10],int i,int j)
+{
+    int min;
+    min=arr[i][j-1];
+
+    if(arr[i-1][j-1]<min)
+    min=arr[i-1][j-1];
+
+    if(arr[i-1][j]<min)
+    min=arr[i-1][j];
+    return min;
+
+}
+
+int main()
+{
+    int arr[10][10]=   {{1,1,1,0,1,0,1},
+                        {1,1,1,1,1,0,1},
+                        {1,0,1,1,1,1,0},
+                        {1,1,1,1,1,1,1},
+                        {1,0,1,0,1,1,0},
+                        {1,0,0,1,1,0,1}};
+    int row=1,col=1;
+        int Size = 7;
+        int Max_Value=0;
+    //printf("%d\n",Size);
+
+/*
+    for(col=0;col<Size;col++,printf("\n"))
+    for(row=0;row<Size;row++)
+    printf("%d ",arr[row][col]);
+*/
+    int minimum=0;
+    for(col=1;col<Size;col++)
+    for(row=1;row<Size;row++)
+    {
+        if(arr[row][col]!=0)
+        {
+            minimum=min_value(arr,row,col)+1;
+            arr[row][col]=minimum;
+            if(minimum>Max_Value)
+            Max_Value=minimum;
+        }
+    }
+    printf("\n");
+    /*
+    for(col=0;col<Size;col++,printf("\n"))
+    for(row=0;row<Size;row++)
+    printf("%d ",arr[row][col]);
+    */
+    printf("\n Maximum square : %d X %d",Max_Value,Max_Value);
+    return 0;
+}
+

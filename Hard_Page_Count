@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <math.h>
+int main() 
+{
+    int N = 6;
+    int K = 5;
+    int arr[6]={6,3,4,13,5,14};
+    int Chapter=0;//max 5-1
+    int Page_Number=0;
+    int Hard_Page_Count=0;
+    int Ktest=0;
+    while(Chapter<N)    
+    {   
+        Page_Number++;//------------------------------------
+        Ktest=K;
+        int ProgramNo=0;
+        while(ProgramNo<arr[Chapter])    
+        {
+            printf("Page No :%d  Chapter: %d Program: %d  ",Page_Number,Chapter+1,ProgramNo+1);
+            Ktest--;
+            if(Page_Number==ProgramNo+1)
+            {
+                printf(" HDPage :%d  ",Hard_Page_Count+1);
+                Hard_Page_Count++;
+            }
+            printf("\n");
+            ProgramNo++;
+            if(Ktest==0 && ProgramNo<arr[Chapter] )
+            {
+                
+                Page_Number++;//------------------------------------
+                printf("___________NEXT PAGE\n");
+                Ktest=K;
+            }
+
+        }
+        Chapter++;
+        printf("                  +++++++++++++++++NEXT CHAPTER\n");
+    }    
+    printf("%d",Hard_Page_Count);
+    return 0;
+}

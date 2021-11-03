@@ -1,0 +1,51 @@
+/*
+2. vowel removal->no new array/strings->inplace
+sample1 : 
+inp: factorial
+output: factrl
+sample2:
+inp: rajalakshmi institute of technology
+out: rjlkshm nsttt f tchnlgy
+
+*/
+#include <stdio.h>
+#include  <strings.h>
+int vovel_Check(char);
+int main() 
+{
+    char inp[100]="rajalakshmi institute of technology";
+
+    int i=0;
+    int Actlen=sizeof(inp);
+    int len=sizeof(inp);
+
+    while(inp[i]!='\0')
+    {
+        //len=sizeof(inp);
+        if(vovel_Check(inp[i]))
+        {
+            for(int j=i+1;j<Actlen;j++)
+            {
+                inp[j-1]=inp[j];
+                if(len==0)
+                   inp[j]='\0';
+
+            }
+            len--;
+        }
+        else
+        i++;
+    }
+    
+    printf("%s",inp);
+    return 0;
+}
+
+int vovel_Check(char X)//X-> testing char
+{
+    if(X=='a' || X=='e'|| X=='i' || X=='o'  || X=='u')
+    return 1;
+    else
+    return 0;
+
+}

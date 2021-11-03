@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <math.h>
+int main() 
+{   
+    long int input,tempinput;
+    printf("Enter the Number :");
+    scanf("%ld",&input);
+    tempinput=input;
+    int no_of_digits=0,no_of_decimal=0,no_of_binary=0,no_of_octal=0,no_of_hexa=0;
+
+    while(tempinput>0)//Decimal
+    {
+        tempinput=tempinput/10;
+        no_of_decimal+=1;
+    
+    }
+    printf("\n %ld's Decmal count is: %d",input,no_of_decimal);
+
+    tempinput=input;
+    int i=0;
+    while(tempinput>=pow(2,i))//Binary
+    {
+        no_of_binary+=1;
+        //printf("\n i %d || tempinput %ld || pow %lf ",i,tempinput,pow(2,i));
+        i+=1;
+    }
+    printf("\n %ld's Binary count is: %d",input,no_of_binary);
+    i=0;
+    
+    //OCTAL
+    while(tempinput>=pow(8,i))
+    {
+        no_of_octal+=1;
+        i+=1;
+    }
+    printf("\n %ld's Octal  count is: %d",input,no_of_octal);
+        
+    //Hexa
+    i=0;
+    if(no_of_binary%4>0)
+    {
+        i=1;
+    }
+    no_of_hexa=(no_of_binary/4)+i;
+    printf("\n %ld's Hexa   count is: %d",input,no_of_hexa);
+    no_of_digits=no_of_binary+no_of_decimal+no_of_hexa+no_of_octal;
+    printf("\n Total Count is : %d ",no_of_digits);
+
+    return 0;
+}

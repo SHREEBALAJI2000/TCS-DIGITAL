@@ -1,0 +1,69 @@
+#include <stdio.h>
+
+int maxproduct();
+
+int right_prod();
+int botttom_prod();
+int diag_prod();
+int antidiag_prod();
+int main() 
+{   // 4
+    int mat[5][5]= {{1,2,3,4,5},
+                    {6,7,8,9,1},
+                    {2,3,4,5,6},
+                    {7,8,9,1,0},
+                    {9,6,6,2,3}};
+    int n=5;
+
+
+    int i,j,product=1,max=1;
+
+    for(i=0;i<n;i++)
+    for(j=0;j<n;j++)
+    {
+        if(i+3<n)
+        product=right_prod(mat,i,j);
+        if(product>max)
+        max=product;
+
+        if(j+3<n)
+        product=botttom_prod(mat,i,j);
+        if(product>max)
+        max=product;
+
+        if(i+3<n&&j+3<n)
+        product=diag_prod(mat,i,j);
+        if(product>max)
+        max=product;
+
+        if(i-3>0&&j+3<n)
+        product=antidiag_prod(mat,i,j);
+        if(product>max)
+        max=product;
+
+    }
+
+    printf("%d",max);
+    return 0;
+}
+
+int right_prod(int Max[5][5],int workingcol,int workingrow)
+{
+    int X =  (Max[workingrow][workingcol]*Max[workingrow][workingcol+1]*Max[workingrow][workingcol+2]*Max[workingrow][workingcol+3]);
+             return X;
+}
+int botttom_prod(int Max[5][5],int workingcol,int workingrow)
+{
+    int X =  (Max[workingrow][workingcol]*Max[workingrow+1][workingcol]*Max[workingrow+2][workingcol]*Max[workingrow+3][workingcol]);
+             return X;
+}
+int diag_prod(int Max[5][5],int workingcol,int workingrow)
+{
+    int X =  (Max[workingrow][workingcol]*Max[workingrow+1][workingcol+1]*Max[workingrow+2][workingcol+2]*Max[workingrow+3][workingcol+3]);
+             return X;
+}
+int antidiag_prod(int Max[5][5],int workingcol,int workingrow)
+{
+    int X =  (Max[workingrow][workingcol]*Max[workingrow+1][workingcol-1]*Max[workingrow+2][workingcol-2]*Max[workingrow+3][workingcol-3]);
+             return X;
+}

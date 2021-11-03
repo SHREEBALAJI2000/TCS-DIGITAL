@@ -1,0 +1,45 @@
+/*
+
+solution code (runnable): https://code.sololearn.com/cA10A25a3A22
+1.Reversing only alphabets in a string
+inp:
+this 24 is 36 45 a test 78 sentence.
+out:
+ecne 24 tn 36 45 e stse 78 tasisiht.
+*/
+
+#include <stdio.h>
+#include <ctype.h>
+int main() 
+{
+    char Input_String[100]="this 24 is 36 45 a test 78 sentence.";
+    char Temp_Char;
+    int LengthOfString=sizeof(Input_String);
+    printf(Input_String);
+
+    int Start=0,End=LengthOfString-1;
+    while(Start<End)
+    {
+        if(!isalpha(Input_String[Start]) && !isalpha(Input_String[End]))
+        {
+            Start++;
+            End--;
+            continue;
+        }
+        else if(isalpha(Input_String[Start]) && isalpha(Input_String[End]))
+        {
+            Temp_Char           =   Input_String[End];
+            Input_String[End]   =   Input_String[Start];
+            Input_String[Start] =   Temp_Char;
+            Start++;
+            End--;
+        }
+        else if(!isalpha(Input_String[Start]))
+        Start++;
+        else
+        End--;
+    }
+    printf("\n");
+    printf(Input_String);
+    return 0;
+}
